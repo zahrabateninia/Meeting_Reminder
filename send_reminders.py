@@ -33,4 +33,12 @@ See you there.
     return message
 
 
-
+def send_message(message, emails):
+    smtp = smtplib.SMTP('local host')
+    message['From'] = 'noreply@example.com'
+    for email in emails.split(','):
+        del message['To']
+        message['To'] = email
+        smtp.send_message(message)
+    smtp.quit()
+    pass
