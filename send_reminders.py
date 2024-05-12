@@ -5,3 +5,9 @@ import email
 import smtplib
 import sys
 
+def usage():
+    print("send_reminders: Send meeting reminders")
+    print()
+    print("invocation:")
+    print("     send_reminders 'date|Meeting Title|Emails' ")
+    return 1
