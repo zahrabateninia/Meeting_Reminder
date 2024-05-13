@@ -13,8 +13,10 @@ def usage():
     return 1
 
 def dow(date):
-    dateobj = datetime.datetime.strftime(date, r"%d/%m/%Y")
+    dateobj = datetime.datetime.strptime(date, r"%d/%m/%Y")
     return dateobj.strftime("%A")
+    
+# print(dow("12/05/2024"))  # Output: "Saturday"
 
 def message_template(date, title):
     message = email.message.EmailMessage()
@@ -23,7 +25,7 @@ def message_template(date, title):
     message.set_content(f'''
 Hi all!
 
-This is a qick mail to remind you all that we have a meeting about:
+This is a quick mail to remind you all that we have a meeting about:
 "{title}"
 the {weekday} {date}.
 
