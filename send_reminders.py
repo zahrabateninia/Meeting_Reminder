@@ -14,7 +14,7 @@ def usage():
 
 # day of the week function: 
 def dow(date):
-    dateobj = datetime.datetime.strptime(date, r"%d/%m/%Y") # datetime.datetime.strptime(date_string, format)
+    dateobj = datetime.datetime.strptime(date, r"%Y/%m/%d") # datetime.datetime.strptime(date_string, format)
     return dateobj.strftime("%A") # %A is a directive that represents the full name of the day of the week
 
 # print(dow("12/05/2024"))  # Output: "Saturday"
@@ -57,7 +57,6 @@ def main():
         send_message(message, emails)
         print("Successfully sent reminders to:", emails)
     except Exception as e:
-        # print the exception that generate the failure
         print("Failure to send email with {}".format(e), file=sys.stderr)
 
 
