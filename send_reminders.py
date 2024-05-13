@@ -14,7 +14,7 @@ def usage():
 
 # day of the week function: 
 def dow(date):
-    dateobj = datetime.datetime.strptime(date, r"%Y/%m/%d") # datetime.datetime.strptime(date_string, format)
+    dateobj = datetime.datetime.strptime(date, r"%Y-%m-%d") # datetime.datetime.strptime(date_string, format)
     return dateobj.strftime("%A") # %A is a directive that represents the full name of the day of the week
 
 # print(dow("12/05/2024"))  # Output: "Saturday"
