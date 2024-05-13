@@ -12,10 +12,11 @@ def usage():
     print("     send_reminders 'date|Meeting Title|Emails' ")
     return 1
 
+# day of the week function: 
 def dow(date):
-    dateobj = datetime.datetime.strptime(date, r"%d/%m/%Y")
-    return dateobj.strftime("%A")
-    
+    dateobj = datetime.datetime.strptime(date, r"%d/%m/%Y") # datetime.datetime.strptime(date_string, format)
+    return dateobj.strftime("%A") # %A is a directive that represents the full name of the day of the week
+
 # print(dow("12/05/2024"))  # Output: "Saturday"
 
 def message_template(date, title):
@@ -50,12 +51,14 @@ def main():
     if len(sys.argv) < 2:
         return usage()
     try:
+        # split the received parameters in three
         date, title, emails = sys.argv[1].split('|')
         message = message_template(date, title)
         send_message(message, emails)
         print("Successfully sent reminders to:", emails)
     except Exception as e:
-        print("Failure to send email", file=sys.stderr)
+        # print the exception that generate the failure
+        print("Failure to send email with {}".format(e), file=sys.stderr)
 
 
 if __name__ == "__main__":
