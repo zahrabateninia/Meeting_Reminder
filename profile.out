@@ -1,0 +1,6 @@
+# callgrind format
+version: 1
+creator: pprofile
+event: usphit :microseconds/hit
+events: hits microseconds usphit
+cmd: time ./send_reminders.py '2024-07-12|Epprofile3 -f xample|test1,test2,test3,test4,test5,test6,test7,test8,test9'

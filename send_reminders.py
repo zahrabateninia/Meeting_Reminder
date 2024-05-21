@@ -35,6 +35,16 @@ See you there.
 ''')
     return message
 
+def get_name(contacts, email):
+    name = ""
+    with open(contacts) as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            if row[0] == email:
+                name = row[1]
+    return name
+
+
 
 def send_message(message, emails):
     smtp = smtplib.SMTP('localhost')
