@@ -19,14 +19,14 @@ def dow(date):
 
 # print(dow("12/05/2024"))  # Output: "Saturday"
 
-def message_template(date, title):
+def message_template(date, title, name):
     message = email.message.EmailMessage()
     weekday = dow(date)
     message['Subject'] = f'Meeting reminder: "{title}"'
     message.set_content(f'''
-Hi all!
+Hi "{name}"!
 
-This is a quick mail to remind you all that we have a meeting about:
+This is a quick mail to remind you that we have a meeting about:
 "{title}"
 the {weekday} {date}.
 
@@ -45,10 +45,12 @@ def read_names(contacts):
 
 
 
-def send_message(message, emails):
+def send_message(message, emails, contacts):
     smtp = smtplib.SMTP('localhost')
+    names = read_names(contacts)
     message['From'] = 'noreply@example.com'
     for email in emails.split(','):
+        name = names[email]
         del message['To']
         message['To'] = email
         smtp.send_message(message)
@@ -62,7 +64,7 @@ def main():
     try:
         # split the received parameters in three
         date, title, emails = sys.argv[1].split('|')
-        message = message_template(date, title)
+        message = message_template(date, title, name)
         send_message(message, emails)
         print("Successfully sent reminders to:", emails)
     except Exception as e:
